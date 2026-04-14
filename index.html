@@ -9,33 +9,49 @@
 
 <body>
 
-<div class="popup">
-<h1>GeoLearn India</h1>
-<h2>Select Category</h2>
+<div class="container">
 
-<button onclick="openGIS()">GIS</button>
-<button onclick="openRS()">Remote Sensing</button>
+<h1 class="title">GeoLearn India</h1>
+<p class="subtitle">GIS & Remote Sensing Learning Hub</p>
+
+<div class="card-container">
+
+<div class="card" onclick="openGIS()">
+<h2>GIS</h2>
+<p>Learn GIS Terminologies, Practicals & Tools</p>
+</div>
+
+<div class="card" onclick="openRS()">
+<h2>Remote Sensing</h2>
+<p>Satellite Data, LST, NDVI & Analysis</p>
+</div>
+
+</div>
 
 </div>
 
 <div id="gis" class="content">
 <h2>GIS Section</h2>
-<ul>
-<li>Terminologies</li>
-<li>Practicals</li>
-<li>Google Earth Engine Code</li>
-<li>Data Download</li>
-</ul>
+
+<div class="menu">
+<div class="menu-item">Terminologies</div>
+<div class="menu-item">Practicals</div>
+<div class="menu-item">Google Earth Engine</div>
+<div class="menu-item">Data Download</div>
+</div>
+
 </div>
 
 <div id="rs" class="content">
-<h2>Remote Sensing Section</h2>
-<ul>
-<li>Terminologies</li>
-<li>Practicals</li>
-<li>LST</li>
-<li>NDVI</li>
-</ul>
+<h2>Remote Sensing</h2>
+
+<div class="menu">
+<div class="menu-item">Terminologies</div>
+<div class="menu-item">Practicals</div>
+<div class="menu-item">LST</div>
+<div class="menu-item">NDVI</div>
+</div>
+
 </div>
 
 <script src="script.js"></script>
