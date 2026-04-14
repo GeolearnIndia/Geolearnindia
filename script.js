@@ -7,3 +7,8 @@ function openRS(){
 document.querySelector('.popup').style.display='none';
 document.getElementById('rs').style.display='block';
 }
+function goBack(){
+document.querySelector('.container').style.display='block';
+document.getElementById('gis').style.display='none';
+document.getElementById('rs').style.display='none';
+}
