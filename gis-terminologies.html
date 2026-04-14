@@ -10,30 +10,43 @@
 
 .search{
 padding:12px;
-width:300px;
-border-radius:5px;
+width:320px;
+border-radius:6px;
 border:none;
 margin-top:20px;
+font-size:16px;
 }
 
+/* Alphabet Grid */
+
 .alphabet{
+display:grid;
+grid-template-columns:repeat(6,1fr);
+gap:12px;
 margin-top:30px;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .alphabet span{
-margin:5px;
 cursor:pointer;
-padding:8px 12px;
+padding:12px;
 background:white;
 color:black;
-border-radius:5px;
-display:inline-block;
+border-radius:8px;
+text-align:center;
+font-weight:bold;
+transition:0.3s;
 }
 
 .alphabet span:hover{
 background:#0077b6;
 color:white;
+transform:scale(1.1);
 }
+
+/* Terms */
 
 .terms{
 margin-top:30px;
@@ -43,9 +56,21 @@ margin-top:30px;
 background:white;
 color:black;
 margin:10px auto;
-padding:10px;
+padding:12px;
 width:400px;
-border-radius:5px;
+border-radius:6px;
+opacity:0;
+transform:translateY(20px);
+animation:fadeIn 0.4s forwards;
+}
+
+/* Animation */
+
+@keyframes fadeIn{
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 </style>
@@ -58,7 +83,11 @@ border-radius:5px;
 
 <h1>GIS Terminologies</h1>
 
-<input type="text" class="search" placeholder="Search terminology..." onkeyup="searchTerm()">
+<input 
+type="text" 
+class="search" 
+placeholder="Search terminology..." 
+onkeyup="searchTerm()">
 
 <div class="alphabet" id="alphabet"></div>
 
@@ -73,9 +102,13 @@ border-radius:5px;
 <div class="term">Georeferencing</div>
 <div class="term">Hillshade</div>
 <div class="term">Interpolation</div>
-<div class="term">Projection</div>
+<div class="term">Map Projection</div>
 <div class="term">Raster</div>
 <div class="term">Vector</div>
+<div class="term">Spatial Analysis</div>
+<div class="term">Topology</div>
+<div class="term">UTM</div>
+<div class="term">Zonal Statistics</div>
 
 </div>
 
@@ -97,28 +130,46 @@ alphabetDiv.appendChild(span);
 })
 
 function filterLetter(letter){
+
 let terms=document.querySelectorAll(".term");
 
 terms.forEach(term=>{
+
+term.style.animation="none";
+term.offsetHeight;
+
 if(term.innerText.startsWith(letter)){
 term.style.display="block";
-}else{
+term.style.animation="fadeIn 0.4s forwards";
+}
+else{
 term.style.display="none";
 }
+
 })
+
 }
 
 function searchTerm(){
+
 let input=document.querySelector(".search").value.toLowerCase();
 let terms=document.querySelectorAll(".term");
 
 terms.forEach(term=>{
+
+term.style.animation="none";
+term.offsetHeight;
+
 if(term.innerText.toLowerCase().includes(input)){
 term.style.display="block";
-}else{
+term.style.animation="fadeIn 0.4s forwards";
+}
+else{
 term.style.display="none";
 }
+
 })
+
 }
 
 </script>
