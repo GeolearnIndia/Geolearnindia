@@ -55,20 +55,19 @@ color:#0077b6;
 /* 🔥 CONTACT DROPDOWN */
 .contact-box{
 position:relative;
-margin-left:20px;
 cursor:pointer;
 }
 
 .contact-dropdown{
 display:none;
 position:absolute;
-top:30px;
+top:35px;
 right:0;
 background:white;
 padding:10px;
 border-radius:8px;
 box-shadow:0 5px 15px rgba(0,0,0,0.2);
-min-width:230px;
+min-width:220px;
 }
 
 .contact-dropdown a{
@@ -77,6 +76,14 @@ text-decoration:none;
 color:#333;
 padding:8px;
 border-radius:5px;
+}
+
+.contact-dropdown a:hover{
+background:#f4f1ea;
+}
+
+.contact-box:hover .contact-dropdown{
+display:block;
 }
 
 .contact-dropdown a:hover{
