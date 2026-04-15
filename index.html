@@ -29,6 +29,7 @@ left:0;
 z-index:1000;
 box-sizing:border-box;
 }
+
 .logo{
 font-weight:bold;
 font-size:20px;
@@ -39,10 +40,11 @@ color:#5c5144;
 .nav-links{
 display:flex;
 align-items:center;
+gap:25px;   /* 🔥 FIX spacing */
 }
 
+/* NORMAL LINKS */
 .nav-links span{
-margin-left:20px;
 cursor:pointer;
 color:#5c5144;
 font-weight:500;
@@ -52,12 +54,15 @@ font-weight:500;
 color:#0077b6;
 }
 
-/* 🔥 CONTACT DROPDOWN */
+/* 🔥 CONTACT BOX FIX */
 .contact-box{
 position:relative;
 cursor:pointer;
+color:#5c5144;
+font-weight:500;
 }
 
+/* DROPDOWN */
 .contact-dropdown{
 display:none;
 position:absolute;
@@ -70,20 +75,13 @@ box-shadow:0 5px 15px rgba(0,0,0,0.2);
 min-width:220px;
 }
 
+/* LINKS */
 .contact-dropdown a{
 display:block;
 text-decoration:none;
 color:#333;
 padding:8px;
 border-radius:5px;
-}
-
-.contact-dropdown a:hover{
-background:#f4f1ea;
-}
-
-.contact-box:hover .contact-dropdown{
-display:block;
 }
 
 .contact-dropdown a:hover{
@@ -197,6 +195,7 @@ cursor:pointer;
 
 <span onclick="openHelp()">Help</span>
 
+<!-- 🔥 CONTACT -->
 <div class="contact-box">
 Contact
 <div class="contact-dropdown">
