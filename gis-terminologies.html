@@ -99,16 +99,158 @@ max-width:400px;
 
 /* 🔥 FULL DATA (paste all your 244 here) */
 let data = [
-{name:"Attribute", def:"Information about a map feature stored in a table."},
-{name:"Arc", def:"A line feature used to represent roads or rivers."},
-{name:"Area", def:"A closed shape representing a region."},
-{name:"Buffer", def:"A zone created around a feature."},
-{name:"Coordinate System", def:"System to locate places."},
-{name:"DEM", def:"Digital Elevation Model."},
-{name:"Raster", def:"Pixel based data."},
-{name:"Vector", def:"Points, lines, polygons."}
-];
+{name:"Attribute", def:"Information about a map feature stored in a table. For example, a city can have attributes like name, population, and area."},
+{name:"Arc", def:"A line feature used to represent things like roads, rivers, or boundaries on a map."},
+{name:"Area", def:"A closed shape (polygon) that shows a region, such as a park, lake, or country."},
+{name:"Azimuth", def:"The direction of one point from another, measured in degrees from north (0° to 360°)."},
+{name:"Accuracy", def:"How correct the map data is compared to real-world locations or values."},
+{name:"Aerial Photo", def:"An image of the Earth taken from above using a drone, airplane, or satellite."},
+{name:"Aggregation", def:"The process of combining smaller data units into larger ones, like grouping villages into a district."},
+{name:"Absolute Location", def:"The exact position of a place using coordinates like latitude and longitude."},
+{name:"Adjacency", def:"When two or more map features are located next to each other or share a boundary."},
 
+{name:"Buffer", def:"A zone created around a map feature at a set distance. For example, a 1 km buffer around a river."},
+{name:"Boundary", def:"A line that shows the limit of an area, like the border of a country or city."},
+{name:"Base Map", def:"The main background map that shows basic features like roads, rivers, and land."},
+{name:"Bilinear Interpolation", def:"A method used to estimate values between known points in raster data."},
+{name:"Band", def:"A layer of data in raster images, like satellite images having multiple bands (red, green, blue)."},
+{name:"Binary Data", def:"Data stored in two values (0 and 1), often used in raster maps (like land vs water)."},
+{name:"Breakline", def:"A line that shows a sudden change in terrain, like a cliff or ridge."},
+{name:"Benchmark", def:"A fixed reference point with known elevation, used for measurements."},
+{name:"Basemap Layer", def:"A layer that provides background reference for other GIS data."},
+
+{name:"Coordinate", def:"A set of numbers that shows the exact location of a point on Earth (like latitude and longitude)."},
+{name:"Coordinate System", def:"A system used to locate places on Earth using coordinates."},
+{name:"Contour Line", def:"A line on a map that connects points of equal elevation (same height)."},
+{name:"Cartography", def:"The science and art of making maps."},
+{name:"Centroid", def:"The center point of a polygon (area feature)."},
+{name:"Clip", def:"A GIS tool used to cut out a part of one layer using another layer."},
+{name:"Coverage", def:"A data model that stores geographic features like points, lines, and polygons."},
+{name:"Cell", def:"The smallest unit in a raster dataset (like a pixel)."},
+{name:"Classification", def:"Grouping data into categories, like land use types (forest, urban, water)."},
+{name:"CRS (Coordinate Reference System)", def:"A system that defines how coordinates relate to real-world locations."},
+
+{name:"Data Layer", def:"A set of geographic data shown on a map, like roads, rivers, or buildings."},
+{name:"Datum", def:"A reference system used to measure locations on Earth."},
+{name:"Digital Elevation Model (DEM)", def:"A digital map that shows the height of land."},
+{name:"Digitizing", def:"The process of converting paper maps into digital form."},
+{name:"Distance", def:"The space between two locations on a map."},
+{name:"Density", def:"The amount of features in a given area."},
+{name:"Database", def:"A collection of organized data stored in a computer system."},
+{name:"Dissolve", def:"A GIS tool used to merge features based on a common attribute."},
+{name:"Drainage", def:"The way water flows over land."},
+{name:"Discrete Data", def:"Data that represents separate and distinct features."},
+
+{name:"Elevation", def:"The height of a place above sea level."},
+{name:"Extent", def:"The total area covered by a map or dataset."},
+{name:"Entity", def:"Any real-world object shown in GIS."},
+{name:"Edge Matching", def:"Making sure map edges from different datasets fit together."},
+{name:"Euclidean Distance", def:"The straight-line distance between two points."},
+{name:"Error", def:"A difference between real-world data and map data."},
+{name:"Editing", def:"Making changes to GIS data."},
+{name:"Extraction", def:"Taking out specific data from a dataset."},
+{name:"Elevation Data", def:"Data that shows the height of land areas."},
+{name:"Envelope", def:"The smallest rectangle that covers a dataset."},
+
+{name:"Feature", def:"Any real-world object shown on a map."},
+{name:"Feature Class", def:"A group of similar features."},
+{name:"Field", def:"A column in a table."},
+{name:"File Geodatabase", def:"A type of database used in GIS."},
+{name:"Format", def:"The way data is stored."},
+{name:"Floodplain", def:"A low area near a river that can flood."},
+{name:"Flow Direction", def:"The direction water flows."},
+{name:"Flow Accumulation", def:"Shows how much water collects."},
+{name:"False Color Image", def:"Image where colors are changed to highlight features."},
+{name:"Frequency", def:"The number of times a value appears."},
+
+{name:"Geographic Information System (GIS)", def:"A system used to collect and analyze geographic data."},
+{name:"Geodatabase", def:"A database used to store GIS data."},
+{name:"Georeferencing", def:"Matching a map to real-world coordinates."},
+{name:"Geometry", def:"The shape of a feature."},
+{name:"Grid", def:"A network of rows and columns."},
+{name:"Ground Truth", def:"Real-world data used to check accuracy."},
+{name:"Geocoding", def:"Converting addresses into coordinates."},
+{name:"Gradient", def:"The slope of land."},
+{name:"Global Positioning System (GPS)", def:"A system using satellites to find locations."},
+{name:"Geospatial Data", def:"Data linked to location."},
+
+{name:"Hillshade", def:"A shaded map showing terrain."},
+{name:"Hotspot", def:"An area with high concentration."},
+{name:"Hydrology", def:"Study of water."},
+{name:"Height", def:"Vertical distance above ground."},
+{name:"Histogram", def:"A graph showing distribution."},
+{name:"Horizontal Accuracy", def:"Accuracy of location."},
+{name:"Hyperspectral Image", def:"Image with many bands."},
+{name:"Hectare", def:"Unit of area (10,000 sq m)."},
+{name:"Hydrography", def:"Study of water bodies."},
+{name:"Heat Map", def:"Map showing intensity using colors."},
+
+{name:"Interpolation", def:"Estimating unknown values."},
+{name:"Imagery", def:"Photos of Earth."},
+{name:"Index Map", def:"Map showing location of another map."},
+{name:"Input Data", def:"Data entered into GIS."},
+{name:"Instance", def:"Single example of a feature."},
+{name:"Intensity", def:"Strength of value."},
+{name:"Isohyet", def:"Line connecting equal rainfall."},
+{name:"Isoline", def:"Line connecting equal values."},
+{name:"Image Classification", def:"Grouping pixels into categories."},
+{name:"Infrastructure", def:"Physical structures like roads."},
+
+{name:"Join", def:"Connecting tables."},
+{name:"JPEG", def:"Image format."},
+{name:"Junction", def:"Point where lines meet."},
+{name:"JSON", def:"Data format."},
+{name:"JavaScript", def:"Programming language for maps."},
+
+{name:"KML", def:"File format used in Google Earth."},
+{name:"Kriging", def:"Advanced interpolation method."},
+{name:"Kernel Density", def:"Shows density of points."},
+
+{name:"Layer", def:"Set of geographic data."},
+{name:"Latitude", def:"Distance north/south."},
+{name:"Longitude", def:"Distance east/west."},
+
+{name:"Map", def:"Visual representation of area."},
+{name:"Mapping", def:"Process of creating maps."},
+{name:"Metadata", def:"Information about data."},
+
+{name:"Node", def:"Point where lines meet."},
+{name:"Network", def:"Connected system."},
+
+{name:"Overlay", def:"Combining layers."},
+{name:"Object", def:"Real-world feature."},
+
+{name:"Point", def:"Exact location."},
+{name:"Polygon", def:"Closed shape."},
+{name:"Polyline", def:"Line feature."},
+
+{name:"Projection", def:"Showing Earth on flat map."},
+{name:"Pixel", def:"Smallest raster unit."},
+
+{name:"Query", def:"Request to find data."},
+{name:"QGIS", def:"Free GIS software."},
+
+{name:"Raster", def:"Grid data."},
+{name:"Resolution", def:"Level of detail."},
+
+{name:"Scale", def:"Map ratio."},
+{name:"Spatial Data", def:"Location data."},
+
+{name:"Topology", def:"Relationship between features."},
+
+{name:"UTM", def:"Coordinate system."},
+
+{name:"Vector Data", def:"Points, lines, polygons."},
+{name:"Vertex", def:"Point on feature."},
+
+{name:"Watershed", def:"Area draining water."},
+{name:"Web GIS", def:"GIS on internet."},
+
+{name:"X Coordinate", def:"Horizontal position."},
+{name:"Y Coordinate", def:"Vertical position."},
+{name:"Z Coordinate", def:"Height/elevation."}
+
+];
 /* ALPHABET */
 let alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let alphabetDiv=document.getElementById("alphabet");
