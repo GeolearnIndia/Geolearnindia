@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIS Practicals</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+.section{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:30px;
+}
+
+.box{
+background:white;
+color:black;
+padding:20px;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.box:hover{
+background:#0077b6;
+color:white;
+}
+
+.list{
+margin-top:30px;
+}
+
+.item{
+background:white;
+color:black;
+margin:10px auto;
+padding:12px;
+width:400px;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* Popup */
+.popup-box{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+justify-content:center;
+align-items:center;
+}
+
+.popup-content{
+background:white;
+color:black;
+padding:25px;
+border-radius:10px;
+width:400px;
+max-height:80vh;
+overflow:auto;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>GIS Practicals</h1>
+
+<!-- Software Selection -->
+<div class="section">
+<div class="box" onclick="showQGIS()">QGIS</div>
+<div class="box" onclick="showArc()">ArcPro</div>
+<div class="box" onclick="showErdas()">ERDAS</div>
+</div>
+
+<!-- Practical List -->
+<div class="list" id="list"></div>
+
+<button onclick="goBack()" class="back">Back</button>
+
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup-box">
+<div class="popup-content">
+<h2 id="title"></h2>
+<p id="steps"></p>
+<button onclick="closePopup()">Close</button>
+</div>
+</div>
+
+<script>
+
+let listDiv = document.getElementById("list");
+
+/* DATA (tum yaha apna data add karoge) */
+
+let qgis = [
+{name:"Clip Tool", steps:"Step 1: Open QGIS\nStep 2: Load data\nStep 3: Use clip tool"},
+{name:"Buffer", steps:"Step 1: Open tool\nStep 2: Select layer\nStep 3: Set distance"}
+];
+
+let arc = [
+{name:"NDVI", steps:"Step 1: Add raster\nStep 2: Raster calculator\nStep 3: Apply NDVI formula"},
+{name:"LST", steps:"Step 1: Load thermal band\nStep 2: Convert to temp\nStep 3: Calculate LST"}
+];
+
+let erdas = [
+{name:"Classification", steps:"Step 1: Open image\nStep 2: Choose classifier\nStep 3: Run"},
+{name:"Mosaic", steps:"Step 1: Import images\nStep 2: Mosaic tool\nStep 3: Save output"}
+];
+
+/* FUNCTIONS */
+
+function showQGIS(){
+displayList(qgis);
+}
+
+function showArc(){
+displayList(arc);
+}
+
+function showErdas(){
+displayList(erdas);
+}
+
+function displayList(data){
+listDiv.innerHTML="";
+
+data.forEach(item=>{
+let div=document.createElement("div");
+div.className="item";
+div.innerText=item.name;
+div.onclick=()=>showSteps(item.name,item.steps);
+listDiv.appendChild(div);
+});
+}
+
+function showSteps(name,steps){
+document.getElementById("title").innerText=name;
+document.getElementById("steps").innerText=steps;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function goBack(){
+history.back();
+}
+
+</script>
+
+</body>
+</html>
