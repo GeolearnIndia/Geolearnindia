@@ -49,7 +49,7 @@ color:#5c5144;
 font-weight:500;
 }
 
-/* 🔥 CONTACT BOX */
+/* 🔥 CONTACT */
 .contact-box{
 position:relative;
 }
@@ -87,7 +87,7 @@ border-radius:5px;
 background:#f4f1ea;
 }
 
-/* HOVER SHOW */
+/* SHOW ON HOVER */
 .contact-box:hover .contact-dropdown{
 display:block;
 }
@@ -194,10 +194,10 @@ cursor:pointer;
 
 <span onclick="openHelp()">Help</span>
 
-<!-- 🔥 CONTACT FIX -->
+<!-- ✅ CONTACT FIXED -->
 <div class="contact-box">
 
-<div class="contact-title">Contact</div>
+<div class="contact-title" onclick="callMain()">Contact</div>
 
 <div class="contact-dropdown">
 <a href="tel:8222092403">📞 Lakshay: 8222092403</a>
@@ -257,6 +257,11 @@ alert("Help Section Coming Soon!");
 
 function openDeveloper(){
 alert("Developer: Lakshay Dhankhar 🚀");
+}
+
+/* 🔥 CLICK CALL */
+function callMain(){
+window.location.href="tel:8222092403";
 }
 
 function openGIS(){
