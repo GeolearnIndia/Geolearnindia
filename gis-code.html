@@ -2,6 +2,7 @@
 <html>
 <head>
 <title>GIS Code</title>
+
 <style>
 
 body{
@@ -10,13 +11,22 @@ background:#f4f1ea;
 text-align:center;
 }
 
+h1{
+margin-top:30px;
+color:#5c5144;
+}
+
 .item{
 background:#e8dcc7;
 margin:10px auto;
 padding:15px;
-width:250px;
+width:300px;
 cursor:pointer;
-border-radius:5px;
+border-radius:8px;
+}
+
+.item:hover{
+background:#d6c6a5;
 }
 
 .code-box{
@@ -24,54 +34,126 @@ display:none;
 background:white;
 margin:20px auto;
 padding:20px;
-width:80%;
-max-width:500px;
+width:90%;
+max-width:700px;
 position:relative;
+text-align:left;
+border-radius:10px;
 }
 
 .copy{
 position:absolute;
 top:10px;
 right:10px;
+padding:5px 10px;
+background:#5c5144;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+pre{
+white-space:pre-wrap;
+word-wrap:break-word;
+}
+
+.back{
+margin-top:30px;
+padding:10px 20px;
+background:#5c5144;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <h1>GIS Code</h1>
 
-<div class="item" onclick="showCode('ndvi')">NDVI Code</div>
-<div class="item" onclick="showCode('lst')">LST Code</div>
+<!-- LIST -->
+<div class="item" onclick="showCode('dem')">DEM Code (ROI Based)</div>
+<div class="item" onclick="showCode('global')">Global Watershed + DEM Code</div>
 
+<!-- CODE BOX -->
 <div id="box" class="code-box">
 <button class="copy" onclick="copyCode()">Copy</button>
 <pre id="code"></pre>
 </div>
 
-<button onclick="goBack()">Back</button>
+<button onclick="goBack()" class="back">Back</button>
 
 <script>
 
 function showCode(type){
 let codeText="";
 
-if(type=="ndvi"){
-codeText="NDVI CODE\nimage.normalizedDifference(['NIR','RED'])";
+if(type=="dem"){
+codeText = `// DEM Code (ROI Based)
+
+var roi = roi;
+roi = roi.geometry();
+
+var dem = ee.Image("USGS/SRTMGL1_003");
+
+var dem_roi = dem.clip(roi);
+
+Map.centerObject(roi, 10);
+
+var vis = {
+  min: 0,
+  max: 6000,
+  palette: ['blue','cyan','green','yellow','orange','red']
+};
+
+Map.addLayer(dem_roi, vis, "DEM (Bound to ROI)");
+
+Export.image.toDrive({
+  image: dem_roi,
+  description: "DEM_According_to_ROI",
+  region: roi,
+  scale: 30,
+  fileFormat: "GeoTIFF"
+});`;
 }
-else if(type=="lst"){
-codeText="LST CODE\nimage.multiply(0.02).subtract(273.15)";
+
+else if(type=="global"){
+codeText = `// Global Watershed + DEM Code
+
+Map.setCenter(0, 20, 2);
+
+var basins = ee.FeatureCollection("WWF/HydroSHEDS/v1/Basins/hybas_5");
+
+var styledBasins = basins.style({
+  color: 'blue',
+  fillColor: '00000000',
+  width: 1
+});
+
+Map.addLayer(styledBasins, {}, 'Global Watersheds');
+
+var rivers = ee.FeatureCollection("WWF/HydroSHEDS/v1/FreeFlowingRivers");
+
+Map.addLayer(rivers.style({color: 'cyan'}), {}, 'Global Rivers');
+
+var dem = ee.Image("USGS/SRTMGL1_003");
+
+Map.addLayer(dem, {min: 0, max: 4000, palette: ['white','brown']}, 'DEM');`;
 }
 
 document.getElementById("box").style.display="block";
-document.getElementById("code").innerText=codeText;
+document.getElementById("code").innerText = codeText;
 }
 
 function copyCode(){
-let text=document.getElementById("code").innerText;
+let text = document.getElementById("code").innerText;
 navigator.clipboard.writeText(text);
-alert("Copied!");
+alert("Code Copied!");
 }
 
 function goBack(){
