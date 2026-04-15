@@ -40,26 +40,25 @@ color:#5c5144;
 .nav-links{
 display:flex;
 align-items:center;
-gap:25px;   /* 🔥 FIX spacing */
+gap:25px;
 }
 
-/* NORMAL LINKS */
 .nav-links span{
 cursor:pointer;
 color:#5c5144;
 font-weight:500;
 }
 
-.nav-links span:hover{
-color:#0077b6;
-}
-
-/* 🔥 CONTACT BOX FIX */
+/* 🔥 CONTACT BOX */
 .contact-box{
 position:relative;
+}
+
+/* CLICKABLE TEXT */
+.contact-title{
 cursor:pointer;
-color:#5c5144;
 font-weight:500;
+color:#5c5144;
 }
 
 /* DROPDOWN */
@@ -72,7 +71,7 @@ background:white;
 padding:10px;
 border-radius:8px;
 box-shadow:0 5px 15px rgba(0,0,0,0.2);
-min-width:220px;
+min-width:230px;
 }
 
 /* LINKS */
@@ -88,7 +87,7 @@ border-radius:5px;
 background:#f4f1ea;
 }
 
-/* SHOW ON HOVER */
+/* HOVER SHOW */
 .contact-box:hover .contact-dropdown{
 display:block;
 }
@@ -195,14 +194,17 @@ cursor:pointer;
 
 <span onclick="openHelp()">Help</span>
 
-<!-- 🔥 CONTACT -->
+<!-- 🔥 CONTACT FIX -->
 <div class="contact-box">
-Contact
+
+<div class="contact-title">Contact</div>
+
 <div class="contact-dropdown">
 <a href="tel:8222092403">📞 Lakshay: 8222092403</a>
 <a href="tel:9306423943">📞 Paras: 9306423943</a>
 <a href="mailto:Lakshaydhankhar8@gmail.com">📧 Email</a>
 </div>
+
 </div>
 
 <span onclick="openDeveloper()">Developer</span>
