@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIS Code</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f1ea;
+text-align:center;
+}
+
+/* TITLE */
+h1{
+margin-top:40px;
+color:#5c5144;
+}
+
+/* CODE LIST */
+.list{
+margin-top:40px;
+}
+
+.item{
+background:#e8dcc7;
+margin:10px auto;
+padding:15px;
+width:300px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.item:hover{
+background:#d6c6a5;
+}
+
+/* CODE BOX */
+.code-box{
+display:none;
+margin:30px auto;
+width:80%;
+max-width:600px;
+background:white;
+padding:20px;
+border-radius:10px;
+position:relative;
+text-align:left;
+}
+
+/* COPY BUTTON */
+.copy{
+position:absolute;
+top:10px;
+right:10px;
+padding:5px 10px;
+border:none;
+background:#5c5144;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+/* BACK */
+.back{
+margin-top:30px;
+padding:10px 20px;
+border:none;
+background:#5c5144;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>GIS Code</h1>
+
+<!-- LIST -->
+<div class="list">
+
+<div class="item" onclick="showCode('ndvi')">NDVI Code</div>
+<div class="item" onclick="showCode('lst')">LST Code</div>
+
+</div>
+
+<!-- CODE DISPLAY -->
+<div id="codeBox" class="code-box">
+<button class="copy" onclick="copyCode()">Copy</button>
+<pre id="codeText"></pre>
+</div>
+
+<button onclick="goBack()" class="back">Back</button>
+
+<script>
+
+/* DATA */
+let codes = {
+
+ndvi: `// NDVI GEE Code
+var ndvi = image.normalizedDifference(['NIR', 'RED']);
+Map.addLayer(ndvi, {min:0, max:1}, 'NDVI');`,
+
+lst: `// LST GEE Code
+var lst = image.multiply(0.02).subtract(273.15);
+Map.addLayer(lst, {}, 'LST');`
+
+};
+
+/* SHOW CODE */
+function showCode(type){
+document.getElementById("codeBox").style.display="block";
+document.getElementById("codeText").innerText = codes[type];
+}
+
+/* COPY */
+function copyCode(){
+let text = document.getElementById("codeText").innerText;
+navigator.clipboard.writeText(text);
+alert("Code copied!");
+}
+
+/* BACK */
+function goBack(){
+window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>
