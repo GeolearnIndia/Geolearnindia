@@ -9,43 +9,51 @@
 
 <body>
 
-<div class="container">
+<!-- NAVBAR -->
+<div class="navbar">
+<h2>GeoLearn India</h2>
+<div class="nav-links">
+<span onclick="goHome()">Home</span>
+<span onclick="openGIS()">GIS</span>
+<span onclick="openRS()">Remote Sensing</span>
+</div>
+</div>
 
-<h1 class="title">GeoLearn India</h1>
-<p class="subtitle">GIS & Remote Sensing Learning Hub</p>
+<!-- HOME -->
+<div class="container" id="home">
+
+<h1 class="title">Welcome to GeoLearn India</h1>
+<p class="subtitle">Learn GIS & Remote Sensing Easily</p>
 
 <div class="card-container">
 
 <div class="card" onclick="openGIS()">
 <h2>GIS</h2>
-<p>Learn GIS Terminologies, Practicals & Tools</p>
+<p>Terminologies, Practicals & Tools</p>
 </div>
 
 <div class="card" onclick="openRS()">
 <h2>Remote Sensing</h2>
-<p>Satellite Data, LST, NDVI & Analysis</p>
+<p>NDVI, LST & Satellite Data</p>
 </div>
 
 </div>
 
 </div>
 
-<!-- GIS Section -->
+<!-- GIS -->
 <div id="gis" class="content">
 <h2>GIS Section</h2>
 
 <div class="menu">
 <div class="menu-item" onclick="location.href='gis-terminologies.html'">Terminologies</div>
 <div class="menu-item" onclick="location.href='gis-practicals.html'">Practicals</div>
-<div class="menu-item">Google Earth Engine</div>
+<div class="menu-item">GEE Code</div>
 <div class="menu-item">Data Download</div>
 </div>
-
-<button onclick="goBack()" class="back">Back</button>
-
 </div>
 
-<!-- Remote Sensing Section -->
+<!-- RS -->
 <div id="rs" class="content">
 <h2>Remote Sensing</h2>
 
@@ -55,12 +63,29 @@
 <div class="menu-item">LST</div>
 <div class="menu-item">NDVI</div>
 </div>
-
-<button onclick="goBack()" class="back">Back</button>
-
 </div>
 
-<script src="script.js"></script>
+<script>
+
+function openGIS(){
+document.getElementById('home').style.display='none';
+document.getElementById('gis').style.display='block';
+document.getElementById('rs').style.display='none';
+}
+
+function openRS(){
+document.getElementById('home').style.display='none';
+document.getElementById('gis').style.display='none';
+document.getElementById('rs').style.display='block';
+}
+
+function goHome(){
+document.getElementById('home').style.display='block';
+document.getElementById('gis').style.display='none';
+document.getElementById('rs').style.display='none';
+}
+
+</script>
 
 </body>
 </html>
