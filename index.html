@@ -11,6 +11,7 @@ body{
 margin:0;
 font-family:Segoe UI;
 background:#f4f1ea;
+overflow-x:hidden;
 }
 
 /* POPUP FULL SCREEN */
@@ -21,11 +22,12 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+animation:fadeIn 0.6s ease;
 }
 
 /* TITLE */
 .popup h1{
-font-size:50px;
+font-size:45px;
 color:#5c5144;
 margin-bottom:10px;
 }
@@ -40,37 +42,37 @@ font-size:18px;
 .card-container{
 display:flex;
 gap:40px;
+flex-wrap:wrap;
+justify-content:center;
 }
 
 .card{
 background:#e8dcc7;
 padding:40px;
 border-radius:12px;
-width:300px;
+width:280px;
 cursor:pointer;
-transition:0.3s;
+transition:0.4s;
 box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
 
 .card:hover{
-transform:translateY(-10px);
+transform:translateY(-10px) scale(1.05);
 }
 
 .card h2{
 color:#5c5144;
 }
 
-.card p{
-color:#6e6254;
-}
-
-/* HIDDEN CONTENT */
+/* CONTENT */
 .content{
 display:none;
 text-align:center;
-padding-top:100px;
+padding-top:80px;
+animation:fadeIn 0.5s ease;
 }
 
+/* MENU */
 .menu{
 display:flex;
 justify-content:center;
@@ -96,18 +98,54 @@ background:#d6c6a5;
 transform:translateY(-8px);
 }
 
-.menu-item:hover{
-background:#d6c6a5;
-}
-
+/* BACK BUTTON */
 .back{
-margin-top:30px;
-padding:10px 20px;
+margin-top:70px;
+padding:12px 25px;
 border:none;
 background:#5c5144;
 color:white;
-border-radius:5px;
+border-radius:8px;
 cursor:pointer;
+font-size:16px;
+display:block;
+margin-left:auto;
+margin-right:auto;
+transition:0.3s;
+}
+
+.back:hover{
+background:#3e352c;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* MOBILE RESPONSIVE */
+@media(max-width:768px){
+
+.popup h1{
+font-size:32px;
+}
+
+.card{
+width:90%;
+}
+
+.menu-item{
+width:90%;
+font-size:18px;
+}
+
 }
 
 </style>
@@ -116,7 +154,7 @@ cursor:pointer;
 
 <body>
 
-<!-- POPUP HOME -->
+<!-- HOME POPUP -->
 <div class="popup" id="home">
 
 <h1>GeoLearn India</h1>
@@ -164,20 +202,37 @@ cursor:pointer;
 
 <script>
 
+/* Smooth transition */
 function openGIS(){
-document.getElementById("home").style.display="none";
+fadeOut("home");
+setTimeout(()=>{
 document.getElementById("gis").style.display="block";
+},300);
 }
 
 function openRS(){
-document.getElementById("home").style.display="none";
+fadeOut("home");
+setTimeout(()=>{
 document.getElementById("rs").style.display="block";
+},300);
 }
 
 function goBack(){
 document.getElementById("home").style.display="flex";
 document.getElementById("gis").style.display="none";
 document.getElementById("rs").style.display="none";
+}
+
+/* Fade effect */
+function fadeOut(id){
+let el=document.getElementById(id);
+el.style.opacity="0";
+el.style.transform="translateY(-20px)";
+setTimeout(()=>{
+el.style.display="none";
+el.style.opacity="1";
+el.style.transform="translateY(0)";
+},300);
 }
 
 </script>
