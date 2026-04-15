@@ -92,16 +92,14 @@ align-items:center;
 
 .popup-content{
 background:white;
-color:black;
 padding:25px;
 border-radius:12px;
 width:90%;
 max-width:400px;
 text-align:center;
-animation:fadeIn 0.3s ease;
 }
 
-/* BUTTONS */
+/* BUTTON */
 .popup-content button{
 margin-top:20px;
 padding:10px 20px;
@@ -122,33 +120,11 @@ border-radius:8px;
 cursor:pointer;
 }
 
-/* ANIMATION */
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
-
 /* MOBILE */
 @media(max-width:768px){
-
-.term{
-width:90%;
-}
-
-.search{
-width:90%;
-}
-
-.alphabet{
-grid-template-columns:repeat(4,1fr);
-}
-
+.term{width:90%;}
+.search{width:90%;}
+.alphabet{grid-template-columns:repeat(4,1fr);}
 }
 
 </style>
@@ -163,18 +139,7 @@ grid-template-columns:repeat(4,1fr);
 
 <div class="alphabet" id="alphabet"></div>
 
-<div class="terms" id="terms">
-
-<div class="term" onclick="showDef('ArcGIS')">ArcGIS</div>
-<div class="term" onclick="showDef('Buffer')">Buffer</div>
-<div class="term" onclick="showDef('Coordinate System')">Coordinate System</div>
-<div class="term" onclick="showDef('DEM')">DEM</div>
-<div class="term" onclick="showDef('Raster')">Raster</div>
-<div class="term" onclick="showDef('Vector')">Vector</div>
-<div class="term" onclick="showDef('NDVI')">NDVI</div>
-<div class="term" onclick="showDef('LST')">LST</div>
-
-</div>
+<div class="terms" id="terms"></div>
 
 <button onclick="goBack()" class="back">Back</button>
 
@@ -189,7 +154,77 @@ grid-template-columns:repeat(4,1fr);
 
 <script>
 
+/* 🔥 YOUR FULL DATA (start adding here) */
+let data = [
+{name:"Attribute", def:"Information about a map feature stored in a table."},
+{name:"Arc", def:"A line feature used to represent roads or rivers."},
+{name:"Area", def:"A closed shape representing a region."},
+{name:"Azimuth", def:"Direction measured in degrees from north."},
+{name:"Accuracy", def:"How correct the data is compared to real world."},
+{name:"Aerial Photo", def:"Image taken from above using drone or satellite."},
+{name:"Buffer", def:"A zone created around a feature."},
+{name:"Boundary", def:"Line showing limits of an area."},
+{name:"Base Map", def:"Background map layer."},
+{name:"Coordinate", def:"Numbers showing location."},
+{name:"Coordinate System", def:"System to locate places."},
+{name:"Contour Line", def:"Line joining equal elevation points."},
+{name:"DEM", def:"Digital Elevation Model."},
+{name:"Database", def:"Organized data storage."},
+{name:"Feature", def:"Any real-world object on map."},
+{name:"GIS", def:"System to analyze geographic data."},
+{name:"Latitude", def:"Distance north/south of equator."},
+{name:"Longitude", def:"Distance east/west."},
+{name:"Raster", def:"Pixel-based data."},
+{name:"Vector", def:"Points, lines, polygons."},
+{name:"NDVI", def:"Vegetation index."},
+{name:"LST", def:"Land Surface Temperature."},
+{name:"Projection", def:"Method to represent Earth."},
+{name:"Pixel", def:"Smallest unit of raster."},
+{name:"Remote Sensing", def:"Data collection via satellites."},
+{name:"Spatial Data", def:"Location-based data."},
+{name:"Shapefile", def:"Vector file format."},
+{name:"Topology", def:"Relationship between features."},
+{name:"UTM", def:"Coordinate system dividing Earth."},
+{name:"Web GIS", def:"GIS on internet."}
+];
+
+/* 🔥 AUTO SYSTEM */
+
+let termsDiv = document.getElementById("terms");
+
+/* A-Z SORT */
+data.sort((a,b)=>a.name.localeCompare(b.name));
+
+/* DISPLAY */
+function displayTerms(list){
+termsDiv.innerHTML="";
+list.forEach(item=>{
+let div=document.createElement("div");
+div.className="term";
+div.innerText=item.name;
+div.onclick=()=>showDef(item.name,item.def);
+termsDiv.appendChild(div);
+});
+}
+
+/* SEARCH */
+function searchTerm(){
+let input=document.querySelector(".search").value.toLowerCase();
+let filtered = data.filter(item =>
+item.name.toLowerCase().includes(input)
+);
+displayTerms(filtered);
+}
+
 /* ALPHABET */
+function filterLetter(letter){
+let filtered = data.filter(item =>
+item.name.startsWith(letter)
+);
+displayTerms(filtered);
+}
+
+/* ALPHABET UI */
 let alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let alphabetDiv=document.getElementById("alphabet");
 
@@ -198,52 +233,12 @@ let span=document.createElement("span");
 span.innerText=letter;
 span.onclick=()=>filterLetter(letter);
 alphabetDiv.appendChild(span);
-})
+});
 
-/* FILTER */
-function filterLetter(letter){
-let terms=document.querySelectorAll(".term");
-
-terms.forEach(term=>{
-if(term.innerText.startsWith(letter)){
-term.style.display="block";
-}else{
-term.style.display="none";
-}
-})
-}
-
-/* SEARCH */
-function searchTerm(){
-let input=document.querySelector(".search").value.toLowerCase();
-let terms=document.querySelectorAll(".term");
-
-terms.forEach(term=>{
-if(term.innerText.toLowerCase().includes(input)){
-term.style.display="block";
-}else{
-term.style.display="none";
-}
-})
-}
-
-/* DEFINITIONS */
-function showDef(term){
-
-let definitions = {
-"ArcGIS":"A GIS software used for mapping and spatial analysis.",
-"Buffer":"Area created around a feature.",
-"Coordinate System":"System used to define locations on Earth.",
-"DEM":"Digital Elevation Model representing terrain.",
-"Raster":"Pixel based satellite data.",
-"Vector":"Data represented by points, lines and polygons.",
-"NDVI":"Vegetation index used to analyze plant health.",
-"LST":"Land Surface Temperature from satellite data."
-};
-
-document.getElementById("title").innerText = term;
-document.getElementById("definition").innerText = definitions[term] || "Coming soon...";
-
+/* POPUP */
+function showDef(name,def){
+document.getElementById("title").innerText=name;
+document.getElementById("definition").innerText=def;
 document.getElementById("popup").style.display="flex";
 }
 
@@ -254,6 +249,9 @@ document.getElementById("popup").style.display="none";
 function goBack(){
 window.location.href="index.html";
 }
+
+/* LOAD */
+displayTerms(data);
 
 </script>
 
