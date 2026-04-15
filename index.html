@@ -4,31 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GeoLearn India</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f1ea;
+}
+
+/* POPUP FULL SCREEN */
+.popup{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
+
+/* TITLE */
+.popup h1{
+font-size:50px;
+color:#5c5144;
+margin-bottom:10px;
+}
+
+.popup p{
+color:#7a6f60;
+margin-bottom:40px;
+font-size:18px;
+}
+
+/* CARDS */
+.card-container{
+display:flex;
+gap:40px;
+}
+
+.card{
+background:#e8dcc7;
+padding:40px;
+border-radius:12px;
+width:300px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.card:hover{
+transform:translateY(-10px);
+}
+
+.card h2{
+color:#5c5144;
+}
+
+.card p{
+color:#6e6254;
+}
+
+/* HIDDEN CONTENT */
+.content{
+display:none;
+text-align:center;
+padding-top:100px;
+}
+
+.menu{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:30px;
+}
+
+.menu-item{
+background:#e8dcc7;
+padding:15px 25px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.menu-item:hover{
+background:#d6c6a5;
+}
+
+.back{
+margin-top:30px;
+padding:10px 20px;
+border:none;
+background:#5c5144;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-<h2>GeoLearn India</h2>
-<div class="nav-links">
-<span onclick="goHome()">Home</span>
-<span onclick="openGIS()">GIS</span>
-<span onclick="openRS()">Remote Sensing</span>
-</div>
-</div>
+<!-- POPUP HOME -->
+<div class="popup" id="home">
 
-<!-- HOME -->
-<div class="container" id="home">
-<h1 class="title">Welcome to GeoLearn India</h1>
-<p class="subtitle">Learn GIS & Remote Sensing Easily</p>
+<h1>GeoLearn India</h1>
+<p>Select Category</p>
 
 <div class="card-container">
 
 <div class="card" onclick="openGIS()">
 <h2>GIS</h2>
-<p>Terminologies, Practicals & Tools</p>
+<p>Learn GIS Terminologies & Practicals</p>
 </div>
 
 <div class="card" onclick="openRS()">
@@ -37,6 +124,7 @@
 </div>
 
 </div>
+
 </div>
 
 <!-- GIS -->
@@ -46,9 +134,9 @@
 <div class="menu">
 <div class="menu-item" onclick="location.href='gis-terminologies.html'">Terminologies</div>
 <div class="menu-item" onclick="location.href='gis-practicals.html'">Practicals</div>
-<div class="menu-item">GEE Code</div>
-<div class="menu-item">Data Download</div>
 </div>
+
+<button onclick="goBack()" class="back">Back</button>
 </div>
 
 <!-- RS -->
@@ -58,9 +146,9 @@
 <div class="menu">
 <div class="menu-item">Terminologies</div>
 <div class="menu-item">Practicals</div>
-<div class="menu-item">LST</div>
-<div class="menu-item">NDVI</div>
 </div>
+
+<button onclick="goBack()" class="back">Back</button>
 </div>
 
 <script>
@@ -68,17 +156,15 @@
 function openGIS(){
 document.getElementById("home").style.display="none";
 document.getElementById("gis").style.display="block";
-document.getElementById("rs").style.display="none";
 }
 
 function openRS(){
 document.getElementById("home").style.display="none";
-document.getElementById("gis").style.display="none";
 document.getElementById("rs").style.display="block";
 }
 
-function goHome(){
-document.getElementById("home").style.display="block";
+function goBack(){
+document.getElementById("home").style.display="flex";
 document.getElementById("gis").style.display="none";
 document.getElementById("rs").style.display="none";
 }
