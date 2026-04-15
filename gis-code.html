@@ -6,66 +6,109 @@
 <style>
 
 body{
-font-family:Arial;
+margin:0;
+font-family:Segoe UI;
 background:#f4f1ea;
 text-align:center;
 }
 
+/* TITLE */
 h1{
-margin-top:30px;
+margin-top:40px;
 color:#5c5144;
 }
 
+/* LIST ITEMS */
 .item{
 background:#e8dcc7;
-margin:10px auto;
-padding:15px;
-width:300px;
+margin:15px auto;
+padding:20px;
+width:320px;
+border-radius:10px;
 cursor:pointer;
-border-radius:8px;
+transition:0.3s;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 .item:hover{
 background:#d6c6a5;
+transform:translateY(-6px);
 }
 
+/* CODE BOX */
 .code-box{
 display:none;
 background:white;
-margin:20px auto;
-padding:20px;
+margin:30px auto;
+padding:25px;
 width:90%;
-max-width:700px;
+max-width:750px;
 position:relative;
 text-align:left;
-border-radius:10px;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+animation:fadeIn 0.4s ease;
 }
 
+/* COPY BUTTON */
 .copy{
 position:absolute;
 top:10px;
 right:10px;
-padding:5px 10px;
+padding:6px 12px;
 background:#5c5144;
 color:white;
 border:none;
-border-radius:5px;
+border-radius:6px;
 cursor:pointer;
+transition:0.3s;
 }
 
+.copy:hover{
+background:#3e352c;
+}
+
+/* CODE TEXT */
 pre{
 white-space:pre-wrap;
 word-wrap:break-word;
+font-size:14px;
 }
 
+/* BACK BUTTON */
 .back{
-margin-top:30px;
-padding:10px 20px;
+margin-top:40px;
+padding:12px 25px;
 background:#5c5144;
 color:white;
 border:none;
-border-radius:5px;
+border-radius:8px;
 cursor:pointer;
+transition:0.3s;
+}
+
+.back:hover{
+background:#3e352c;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.item{
+width:90%;
+}
+
 }
 
 </style>
