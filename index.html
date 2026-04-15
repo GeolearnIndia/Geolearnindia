@@ -34,6 +34,12 @@ font-size:20px;
 color:#5c5144;
 }
 
+/* NAV LINKS */
+.nav-links{
+display:flex;
+align-items:center;
+}
+
 .nav-links span{
 margin-left:20px;
 cursor:pointer;
@@ -45,6 +51,42 @@ font-weight:500;
 color:#0077b6;
 }
 
+/* 🔥 CONTACT DROPDOWN */
+.contact-box{
+position:relative;
+margin-left:20px;
+cursor:pointer;
+}
+
+.contact-dropdown{
+display:none;
+position:absolute;
+top:30px;
+right:0;
+background:white;
+padding:10px;
+border-radius:8px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+min-width:230px;
+}
+
+.contact-dropdown a{
+display:block;
+text-decoration:none;
+color:#333;
+padding:8px;
+border-radius:5px;
+}
+
+.contact-dropdown a:hover{
+background:#f4f1ea;
+}
+
+/* SHOW ON HOVER */
+.contact-box:hover .contact-dropdown{
+display:block;
+}
+
 /* HOME */
 .popup{
 height:100vh;
@@ -53,7 +95,6 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-animation:fadeIn 0.6s ease;
 margin-top:60px;
 }
 
@@ -112,17 +153,13 @@ border-radius:12px;
 cursor:pointer;
 font-size:20px;
 min-width:220px;
-text-align:center;
-box-shadow:0 8px 20px rgba(0,0,0,0.1);
-transition:0.3s;
 }
 
 .menu-item:hover{
 background:#d6c6a5;
-transform:translateY(-8px);
 }
 
-/* BACK BUTTON */
+/* BACK */
 .back{
 margin-top:70px;
 padding:12px 25px;
@@ -131,11 +168,6 @@ color:white;
 border:none;
 border-radius:8px;
 cursor:pointer;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
 }
 
 /* MOBILE */
@@ -149,21 +181,30 @@ to{opacity:1;transform:translateY(0);}
 
 <body>
 
-<!-- 🔥 NAVBAR -->
+<!-- NAVBAR -->
 <div class="navbar">
 <div class="logo">GeoLearn India</div>
 
 <div class="nav-links">
+
 <span onclick="openHelp()">Help</span>
-<span onclick="openContact()">Contact</span>
+
+<div class="contact-box">
+Contact
+<div class="contact-dropdown">
+<a href="tel:8222092403">📞 Lakshay: 8222092403</a>
+<a href="tel:9306423943">📞 Paras: 9306423943</a>
+<a href="mailto:Lakshaydhankhar8@gmail.com">📧 Email</a>
+</div>
+</div>
+
 <span onclick="openDeveloper()">Developer</span>
-<span onclick="sendEmail()">Email</span>
+
 </div>
 </div>
 
 <!-- HOME -->
 <div class="popup" id="home">
-
 <h1>GeoLearn India</h1>
 <p>Select Category</p>
 
@@ -171,7 +212,6 @@ to{opacity:1;transform:translateY(0);}
 <div class="card" onclick="openGIS()"><h2>GIS</h2></div>
 <div class="card" onclick="openRS()"><h2>Remote Sensing</h2></div>
 </div>
-
 </div>
 
 <!-- GIS -->
@@ -202,55 +242,28 @@ to{opacity:1;transform:translateY(0);}
 
 <script>
 
-/* NAVBAR FUNCTIONS */
 function openHelp(){
 alert("Help Section Coming Soon!");
-}
-
-function openContact(){
-alert(
-"📞 Contact Details:\n\n" +
-"Lakshay: 8222092403\n" +
-"Paras: 9306423943\n\n" +
-"Email: Lakshaydhankhar8@gmail.com"
-);
 }
 
 function openDeveloper(){
 alert("Developer: Lakshay Dhankhar 🚀");
 }
 
-function sendEmail(){
-window.location.href="mailto:geolearnindia@gmail.com";
-}
-
-/* PAGE NAVIGATION */
 function openGIS(){
-history.pushState({page:"gis"}, "", "");
-fadeOut("home");
-setTimeout(()=>{document.getElementById("gis").style.display="block";},300);
+document.getElementById("home").style.display="none";
+document.getElementById("gis").style.display="block";
 }
 
 function openRS(){
-history.pushState({page:"rs"}, "", "");
-fadeOut("home");
-setTimeout(()=>{document.getElementById("rs").style.display="block";},300);
+document.getElementById("home").style.display="none";
+document.getElementById("rs").style.display="block";
 }
 
 function goBack(){
 document.getElementById("home").style.display="flex";
 document.getElementById("gis").style.display="none";
 document.getElementById("rs").style.display="none";
-}
-
-window.onpopstate=function(){
-goBack();
-};
-
-function fadeOut(id){
-let el=document.getElementById(id);
-el.style.opacity="0";
-setTimeout(()=>{el.style.display="none";el.style.opacity="1";},300);
 }
 
 </script>
