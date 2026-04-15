@@ -4,11 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GIS Terminologies</title>
-<link rel="stylesheet" href="style.css">
 
 <style>
 
-/* Search */
+body{
+margin:0;
+font-family:Segoe UI;
+background:#f4f1ea;
+text-align:center;
+}
+
+/* TITLE */
+h1{
+margin-top:40px;
+color:#5c5144;
+}
+
+/* SEARCH */
 .search{
 padding:12px;
 width:320px;
@@ -18,7 +30,7 @@ margin-top:20px;
 font-size:16px;
 }
 
-/* Alphabet Grid */
+/* ALPHABET GRID */
 .alphabet{
 display:grid;
 grid-template-columns:repeat(6,1fr);
@@ -32,39 +44,40 @@ margin-right:auto;
 .alphabet span{
 cursor:pointer;
 padding:12px;
-background:white;
-color:black;
+background:#e8dcc7;
+color:#5c5144;
 border-radius:8px;
-text-align:center;
 font-weight:bold;
 transition:0.3s;
 }
 
 .alphabet span:hover{
-background:#0077b6;
-color:white;
+background:#d6c6a5;
 transform:scale(1.1);
 }
 
-/* Terms */
+/* TERMS */
 .terms{
 margin-top:30px;
 }
 
 .term{
-background:white;
-color:black;
+background:#e8dcc7;
+color:#5c5144;
 margin:10px auto;
-padding:12px;
-width:400px;
-border-radius:6px;
+padding:15px;
+width:320px;
+border-radius:8px;
 cursor:pointer;
-opacity:0;
-transform:translateY(20px);
-animation:fadeIn 0.4s forwards;
+transition:0.3s;
 }
 
-/* Popup */
+.term:hover{
+background:#d6c6a5;
+transform:translateY(-5px);
+}
+
+/* POPUP */
 .popup-box{
 display:none;
 position:fixed;
@@ -80,19 +93,62 @@ align-items:center;
 .popup-content{
 background:white;
 color:black;
-padding:30px;
-border-radius:10px;
-width:300px;
+padding:25px;
+border-radius:12px;
+width:90%;
+max-width:400px;
 text-align:center;
-animation:fadeIn 0.3s;
+animation:fadeIn 0.3s ease;
 }
 
-/* Animation */
+/* BUTTONS */
+.popup-content button{
+margin-top:20px;
+padding:10px 20px;
+background:#5c5144;
+color:white;
+border:none;
+border-radius:6px;
+cursor:pointer;
+}
+
+.back{
+margin-top:40px;
+padding:12px 25px;
+background:#5c5144;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* ANIMATION */
 @keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
 to{
 opacity:1;
 transform:translateY(0);
 }
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+.term{
+width:90%;
+}
+
+.search{
+width:90%;
+}
+
+.alphabet{
+grid-template-columns:repeat(4,1fr);
+}
+
 }
 
 </style>
@@ -100,8 +156,6 @@ transform:translateY(0);
 </head>
 
 <body>
-
-<div class="container">
 
 <h1>GIS Terminologies</h1>
 
@@ -122,11 +176,9 @@ transform:translateY(0);
 
 </div>
 
-<button onclick="goHome()" class="back">Back</button>
+<button onclick="goBack()" class="back">Back</button>
 
-</div>
-
-<!-- Popup -->
+<!-- POPUP -->
 <div id="popup" class="popup-box">
 <div class="popup-content">
 <h2 id="title"></h2>
@@ -137,7 +189,7 @@ transform:translateY(0);
 
 <script>
 
-/* Alphabet */
+/* ALPHABET */
 let alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let alphabetDiv=document.getElementById("alphabet");
 
@@ -148,42 +200,34 @@ span.onclick=()=>filterLetter(letter);
 alphabetDiv.appendChild(span);
 })
 
-/* Filter by Alphabet */
+/* FILTER */
 function filterLetter(letter){
 let terms=document.querySelectorAll(".term");
 
 terms.forEach(term=>{
-term.style.animation="none";
-term.offsetHeight;
-
 if(term.innerText.startsWith(letter)){
 term.style.display="block";
-term.style.animation="fadeIn 0.4s forwards";
 }else{
 term.style.display="none";
 }
 })
 }
 
-/* Search */
+/* SEARCH */
 function searchTerm(){
 let input=document.querySelector(".search").value.toLowerCase();
 let terms=document.querySelectorAll(".term");
 
 terms.forEach(term=>{
-term.style.animation="none";
-term.offsetHeight;
-
 if(term.innerText.toLowerCase().includes(input)){
 term.style.display="block";
-term.style.animation="fadeIn 0.4s forwards";
 }else{
 term.style.display="none";
 }
 })
 }
 
-/* Definitions */
+/* DEFINITIONS */
 function showDef(term){
 
 let definitions = {
@@ -205,6 +249,10 @@ document.getElementById("popup").style.display="flex";
 
 function closePopup(){
 document.getElementById("popup").style.display="none";
+}
+
+function goBack(){
+window.location.href="index.html";
 }
 
 </script>
